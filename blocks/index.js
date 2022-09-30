@@ -1,0 +1,1 @@
+import "../blocks/cahnrs-video-list/editor/block";
