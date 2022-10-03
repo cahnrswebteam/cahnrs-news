@@ -56,7 +56,7 @@ button.btn.btn-primary:hover {
 
 .video-image:after {
     content: "";
-    background-image: url(https://static.vecteezy.com/system/resources/previews/001/186/943/non_2x/green-play-button-png.png);
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!-- Generator: Adobe Illustrator 26.3.1, SVG Export Plug-In . SVG Version: 6.00 Build 0) --%3E%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' viewBox='0 0 95 95' style='enable-background:new 0 0 95 95;' xml:space='preserve'%3E%3Cstyle type='text/css'%3E .st0%7Bfill:%23FFFFFF;%7D .st1%7Bfill:%23CA2039;%7D%0A%3C/style%3E%3Cg id='Layer_1'%3E%3C/g%3E%3Cg id='Layer_2'%3E%3Ccircle class='st0' cx='47.5' cy='47.5' r='45.98'/%3E%3Cg%3E%3Cimage style='overflow:visible;opacity:0.34;' width='41' height='45' xlink:href='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACkAAAAtCAYAAAAz8ULgAAAACXBIWXMAAAsSAAALEgHS3X78AAAA%0AGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAn5JREFUeNrUmV1PE0EUhnfboYAK%0AEsqXGo0SvYPEVMOVFyT8FPhZ9QdJIiRwobEXjUaFQDBAbIB+je9J3kmGpbUtzMeyycMuuyk8OfPu%0A2Zlumljb5tZWykOz1/LjY7Wqk4hbagkWsBsD40DxdBtccd+NJZtagpNgHjwDj3ntHByCP+AvaEG0%0AG1ySQ1wCT8F7sEZROX8EvoJvoM7fL0JXtVipVETmAXgDNsA6WAUvwXPKl4FUu2mGHp/TINnd2Qki%0AKf/8IXgNPoAVDrucm6bgHI9LVl51KFm7kq/AO7BMwSKZAI/ALFgEC7xesmQ7IgtR7VNSbpoX4C33%0Ak8xkymFWFBPRJUZgkeekI3QkCvhbHR9VHSRpd4Ei29MUIyCyT0LkVY3YrooUGstUtky+gO/gBDTQ%0AOVouOsGwlczKFkLm9TaSWVnveb2LZLC8Kkc3oNe8uqik97y6lvSSV1+STvPqWzIbAVu233zgRgRC%0ASI6S12sRMKIhJQfl1URArjdk3gq3toiqJN5W4FDPZGSnOOyybPmNVtWMKdmrv4p0l8uVH+ypzUKS%0Aj81EYIKVLVtz2jQvkpoVvASn5qnEm0irnMi1uBo9ANIkP0semcskpqQtd8LnujzfP4FdcMwldJRK%0AmupdcIlc55J5P7t0Nmt8FXlo98B2ZoZ040sIFViukRnabYoeGLle0zcVOHfS+2q9hvZ/c0sVIXc1%0Aq1EP9f2SipS7Rr+h9Sl559z5lnSSO1+STnPnWtJL7lxJes2dC0nvuRtFUsfK3TCSmpW64hKzQ7l2%0AqNwNkjSCZ+An53FmtnzOannP3TCVlAr+oohsuXr7cD/e45iD3L8Rs0Rz+W7xnwADANBN0QHOuQJC%0AAAAAAElFTkSuQmCC' transform='matrix(1 0 0 1 32 27)'%3E%3C/image%3E%3Cg%3E%3Cpath class='st1' d='M67.03,45.45L38.14,28.77c-1.57-0.91-3.54,0.23-3.54,2.05v33.36c0,1.82,1.97,2.95,3.54,2.05l28.89-16.68 C68.61,48.64,68.61,46.36,67.03,45.45L38.14,28.77c-1.57-0.91-3.54,0.23-3.54,2.05v33.36c0,1.82,1.97,2.95,3.54,2.05l28.89-16.68 C68.61,48.64,68.61,46.36,67.03,45.45z'/%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
     top: 0;
     right: 0;
     left: 0;
@@ -65,7 +65,15 @@ button.btn.btn-primary:hover {
     background-size: 25%;
     background-repeat: no-repeat;
     background-position: center center;
-    filter: grayscale(1);
+    /* filter: grayscale(1); */
     opacity: 0.6;
+    transition: .2s;
+}
+
+.video-image:hover:after,
+.individual-video:hover .video-image:after {
+    opacity: 0.9;
+    cursor: pointer;
+    transition: .2s;
 }
 

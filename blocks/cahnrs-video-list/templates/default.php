@@ -10,8 +10,8 @@
 				$video_urls = get_post_meta($video_id,'_video_id');
 			
 				 ?>
-			<div class="individual-video">
-				<div class="video-image-container" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $counter; ?>">
+			<div class="individual-video" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $counter; ?>">
+				<div class="video-image-container">
 
 					<div class="video-image">
 						<?php echo get_the_post_thumbnail( $video_id, 'video-thumb' ); ?>
@@ -21,8 +21,6 @@
 
 				<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $counter; ?>">
 					<?php echo wp_kses_post( $video_item['title'] ); ?>
-
-					
 				</button>
 
 				<!-- Modal -->
