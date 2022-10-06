@@ -1,0 +1,23 @@
+.cahnrs-news-field-set h2 {
+    font-size: 20px !important;
+    padding: 0 0 10px 0 !important;
+}
+
+.cahnrs-news-field {
+    margin-bottom: 20px;
+}
+
+.cahnrs-news-field label {
+    display: block;
+    font-weight: bold;
+}
+
+.cahnrs-news-field input {
+    width: 600px;
+}
+
+.cahnrs-news-field textarea {
+    width: 600px;
+    height: 100px;
+}
+
