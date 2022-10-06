@@ -1,9 +1,6 @@
 
 <?php
 
-    //Retrieves ID of the custom post type
-    $video_id = $video_item['id'];
-
     //Retrieves the URL of the Youtube Video
     $video_url = get_post_custom_values( '_video_id' );
 
@@ -19,7 +16,7 @@
 <div class="individual-video" data-bs-toggle="modal" data-bs-target="#videoModal-<?php echo $counter; ?>">
     <div class="video-image-container">
         <div class="video-image">
-            <?php echo get_the_post_thumbnail( $video_id, 'video-thumb' ); ?>
+            <?php echo get_the_post_thumbnail( '', 'video-thumb' ); ?>
         </div>
     </div>
     
