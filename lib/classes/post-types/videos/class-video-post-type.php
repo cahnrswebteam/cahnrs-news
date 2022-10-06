@@ -211,6 +211,8 @@ class Video_Post_Type_CAHNRS_News extends Post_Type_CAHNRS_News {
 	} // end cwp_get_video_id_from_url
 
 
-} // End Slide_Post_Type_CAHNRS_News
+
+
+} // End Video_Post_Type_CAHNRS_News
 
 $videos_Post_Type_CAHNRS_News = new Video_Post_Type_CAHNRS_News();

@@ -2,13 +2,13 @@
 
 class Functions_CAHNRS_News {
 
-	public static $version = '2.2.8';
+	public static $version = '1.0.0';
 
 	public function __construct() {
 
 		$this->init_theme_functions();
 
-        add_image_size( 'video-thumb', 300, 200, true ); // Hard Crop Mode
+        add_image_size( 'video-thumb', 300, 200, true ); // Video Thumbnail Image
 
 	} // end __construct
 
