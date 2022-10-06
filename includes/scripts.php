@@ -19,7 +19,7 @@ class Scripts {
 
         add_filter( 'archive_template', array( __CLASS__, 'cahnrs_news_video_archive' ) ) ;
 
-        //add_action('wp_footer', array( __CLASS__, 'footer_enqueue_scripts' )); 
+        add_action('wp_footer', array( __CLASS__, 'footer_enqueue_scripts' )); 
 	}
 
     public static function enqueue_block_editor_assets() {
@@ -35,7 +35,6 @@ class Scripts {
     }
 
     public static function enqueue_styles_scripts(){
-        wp_enqueue_script('jquery');
         wp_enqueue_script( 'bootstrap5-script', 'https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js', array() );
         wp_register_style( 'cahnrs-news-plugin-css', 	_get_plugin_url() . '/assets/css/style.css' , false );
         wp_enqueue_style ( 'cahnrs-news-plugin-css' );
@@ -48,7 +47,7 @@ class Scripts {
     }
 
     public static function footer_enqueue_scripts(){
-        wp_enqueue_script( 'cahnrs-news-js', _get_plugin_url() . '/assets/public/js/scripts.js' , array('jquery') );
+        wp_enqueue_script( 'cahnrs-news-js', _get_plugin_url() . '/assets/public/js/scripts.min.js' , array('jquery') );
     }
 
     public static function cahnrs_news_video_archive($archive_page){
@@ -58,8 +57,6 @@ class Scripts {
 		return $archive_page;
 	  }
 	  
-	  
-
 }
 
 Scripts::init();
