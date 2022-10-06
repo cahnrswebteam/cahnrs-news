@@ -43,9 +43,10 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-
-                <iframe src="<?php echo $youtube_URL_with_id; ?>" name="<?php echo get_the_title(); ?>" frameborder="0" width="900" height="700"></iframe>
-
+                <div class="wrapper-iframe">
+                    <iframe src="<?php echo $youtube_URL_with_id; ?>" name="<?php echo get_the_title(); ?>" frameborder="0" width="900" height="700"></iframe>
+                </div>
+            
             </div>
         </div>
     </div>

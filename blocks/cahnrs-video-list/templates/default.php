@@ -19,7 +19,7 @@
 				$youtube_URL_with_id = 'https://www.youtube.com/embed/' . $youtube_id ."?rel=0" ;
 		
 				 ?>
-			<div class="individual-video" data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $counter; ?>">
+			<div class="individual-video" data-bs-toggle="modal" data-bs-target="#videoModal-<?php echo $counter; ?>">
 				<div class="video-image-container">
 
 					<div class="video-image">
@@ -40,7 +40,7 @@
 				?>
 
 				<!-- Modal -->
-				<div class="modal fade" id="exampleModal-<?php echo $counter; ?>" tabindex="-1" role="dialog" aria-modal="true" aria-describeby="videoTitle">
+				<div class="modal fade" id="videoModal-<?php echo $counter; ?>" tabindex="-1" role="dialog" aria-modal="true" aria-describeby="videoTitle">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header" >
@@ -50,13 +50,14 @@
 									<span aria-hidden="true">&times;</span>
 								</button>
 							</div>
-
-							<iframe src="<?php echo $youtube_URL_with_id; ?>" name="<?php echo $video_item['title']; ?>" frameborder="0" width="900" height="700"></iframe>
+							<div class="wrapper-iframe">
+								<iframe src="<?php echo $youtube_URL_with_id; ?>" name="<?php echo $video_item['title']; ?>" frameborder="0" width="900" height="700"></iframe>
+							</div>
 
 						</div>
 					</div>
 				</div>
-				<button data-bs-toggle="modal" data-bs-target="#exampleModal-<?php echo $counter; ?>">
+				<button data-bs-toggle="modal" data-bs-target="#videoModal-<?php echo $counter; ?>">
         			<?php echo "View " . wp_kses_post( $video_item['title'] ) . " video."; ?>
     			</button>
 			</div> <!-- .individual-video -->
