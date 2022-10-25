@@ -11,5 +11,11 @@
 			<div class="cahnrs-news-helper-text">Provide a plain text description of the video ( 1-4 sentances ). The summary will render on the video page above the "Video Page Content".</div>
 			<textarea type="text" name="excerpt"><?php echo wp_kses_post( $post->post_excerpt ); ?></textarea>
 		</div>
+
+		<div class="cahnrs-news-field cahnrs-news-field-full">
+			<label>Video Transcript</label>
+			<div class="cahnrs-news-helper-text">Provide a transcript.</div>
+			<?php wp_editor( $video['transcript'], 'cahnrs_script_editor', $settings = array('textarea_name'=>'_video_transcript','textarea_rows'=>10, 'media_buttons' => false, 'wpautop' => false) ); ?>
+		</div>
 	</div>
 </div>

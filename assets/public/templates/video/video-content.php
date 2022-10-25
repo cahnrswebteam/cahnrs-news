@@ -3,6 +3,7 @@
 
     //Retrieves the URL of the Youtube Video
     $video_url = get_post_custom_values( '_video_id' );
+    $video_transcript = get_post_custom_values( '_video_transcript' );
 
     //Strips out everything except the ID of the Youtube Video
     preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $video_url[0], $match);
@@ -13,7 +14,7 @@
     $youtube_URL_with_id = 'https://www.youtube.com/embed/' . $youtube_id ."?rel=0" ;
 
 ?>
-<div class="individual-video" data-bs-toggle="modal" data-bs-target="#videoModal-<?php echo $counter; ?>">
+<div class="individual-video">
     <div class="video-image-container">
         <div class="video-image">
             <?php echo get_the_post_thumbnail( '', 'video-thumb' ); ?>
@@ -30,7 +31,7 @@
     ?>
 
     <!-- Modal -->
-    <div class="modal fade" id="videoModal-<?php echo $counter; ?>" tabindex="-1" role="dialog" aria-modal="true" aria-describeby="videoTitle">
+    <div class="modal fade" id="videoModal-<?php echo $counter; ?>" tabindex="-1" role="dialog" aria-modal="true" aria-describeby="videoTitle" data-backdrop="static">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -43,14 +44,28 @@
                 <div class="wrapper-iframe">
                     <iframe src="<?php echo $youtube_URL_with_id; ?>" name="<?php echo get_the_title(); ?>" frameborder="0" width="900" height="700"></iframe>
                 </div>
-            
+
+                <div class="video-transcript">
+                    <div class="wsu-accordion">
+                        <h3 id="unique-id-1__title" class="wsu-accordion__title">
+                            <button class="wsu-accordion__title-button wsu-accordion--toggle" aria-expanded="false" aria-controls="unique-id-1__content">Transcript</button>
+                        </h3>
+                        <div id="unique-id-1__content" class="wsu-accordion__content" aria-labelledby="unique-id-1__title" style="">
+                            <div class="wsu-accordion__content-inner" tabindex="0">
+                                <?php echo $video_transcript[0]; ?>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
             </div>
         </div>
+        
     </div>
         
-    <button data-bs-toggle="modal" data-bs-target="#videoModal-<?php echo $counter; ?>">
-        <?php echo "View " . wp_kses_post( get_the_title() ) . " video."; ?>
-    </button>   
+    <a href="#" data-bs-toggle="modal" data-bs-target="#videoModal-<?php echo $counter; ?>" data-keyboard="true">
+        <?php echo "Watch " . wp_kses_post( get_the_title() ) . " video."; ?>
+    </a>   
     
 </div> <!-- .individual-video -->
 

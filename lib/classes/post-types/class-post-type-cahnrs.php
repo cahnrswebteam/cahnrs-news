@@ -93,6 +93,16 @@ class Post_Type_CAHNRS_News {
 					case 'text':
 						$clean[ $key ] = sanitize_text_field( $value );
 						break;
+					case 'textarea':
+						$arr = array(
+							'br' 		=> array(),
+							'p'  		=> array(),
+							'strong' 	=> array()
+						);
+
+						$value = wp_kses($value, $arr);
+						$clean[ $key ] =  $value;	
+						break;
 
 				} // End swtich
 			} // End if

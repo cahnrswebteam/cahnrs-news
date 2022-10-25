@@ -74,21 +74,13 @@ class Video_Post_Type_CAHNRS_News extends Post_Type_CAHNRS_News {
 	public function save( $post_id) {
 
 		$save_fields = array(
-			'_video_id'      => 'text',
-			'_video_img_src' => 'text',
+			'_video_id'      	=> 'text',
+			'_video_transcript' => 'textarea',
 		);
 
 		if ( $this->check_can_save( $post_id ) ) {
 
 			$clean_fields = $this->get_clean_fields( $save_fields );
-
-			if ( empty( $clean_fields['_video_img_src'] ) ) {
-
-				$video_id = $this->get_video_id_from_url( $clean_fields['_video_id'] );
-
-				$clean_fields['_video_img_src'] = 'https://img.youtube.com/vi/' . $video_id . '/0.jpg';
-
-			} // End if
 
 			foreach ( $clean_fields as $key => $value ) {
 
@@ -145,7 +137,7 @@ class Video_Post_Type_CAHNRS_News extends Post_Type_CAHNRS_News {
 
 		$video = array(
 			'id' => get_post_meta( $post_id, '_video_id', true ),
-			'img_src' => get_post_meta( $post_id, '_video_img_src', true ),
+			'transcript' => get_post_meta( $post_id, '_video_transcript', true ),
 		);
 
 		$video = $this->get_legacy_support( $video, $post_id );
