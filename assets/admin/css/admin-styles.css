@@ -21,3 +21,7 @@
     height: 100px;
 }
 
+.post-type-video .mce-top-part,
+.post-type-video .quicktags-toolbar {
+    display: none;
+}

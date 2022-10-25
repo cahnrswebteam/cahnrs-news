@@ -196,7 +196,7 @@ Video List Styling
     margin: 5px 0;
 }
 
-.individual-video > button {
+.individual-video > a {
     position: absolute;
     display: block;
     top: 0;
@@ -254,6 +254,10 @@ Video List Styling
     padding-bottom: 56.25%; /* 16:9 */
     padding-top: 25px;
     height: 0;
+    background: white;
+    background-image: url('https://media.tenor.com/tEBoZu1ISJ8AAAAC/spinning-loading.gif');
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .wrapper-iframe iframe {
@@ -264,6 +268,20 @@ Video List Styling
     height: 100%;
 }
 
+.video-transcript .wsu-accordion {
+    background: white;
+    margin-bottom: 0;
+}
+
+.wsu-accordion__title-button {
+    font-size: 1.2rem;
+}
+
+.video-transcript .wsu-accordion.wsu-accordion--open .wsu-accordion__content {
+    max-height: 200px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 
 @media screen and (min-width: 769px){
     .wsu-video-list {
