@@ -268,6 +268,23 @@ Video List Styling
     height: 100%;
 }
 
+.skip-to-transcript-link {
+    background-color: white;
+    left: 0;
+    padding: 8px;
+    position: absolute;
+    transform: translateY(-100%);
+    top: 100px;
+    z-index: -3;
+}
+
+.skip-to-transcript-link:focus,
+.skip-to-transcript-link:focus-visible {
+    transform: translateY(0%);
+    top: 0;
+    z-index: 9999999;
+}
+
 .video-transcript .wsu-accordion {
     background: white;
     margin-bottom: 0;
