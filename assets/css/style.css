@@ -277,7 +277,7 @@ Video List Styling
     font-size: 1.2rem;
 }
 
-.video-transcript .wsu-accordion.wsu-accordion--open .wsu-accordion__content {
+body:not(.single-video) .video-transcript .wsu-accordion.wsu-accordion--open .wsu-accordion__content {
     max-height: 200px;
     overflow-y: scroll;
     overflow-x: hidden;
