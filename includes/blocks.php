@@ -5,7 +5,8 @@ require_once( ABSPATH . 'wp-content\plugins\wsuwp-plugin-gutenberg\includes\plug
 
 class Register_Block_Video_List extends Blocks {
     protected static $register_blocks = array(
-		'cahnrs/video-list'   => 'Block_WSUWP_Video_List',
+		'cahnrs/video-list'   		=> 'Block_WSUWP_Video_List',
+		'cahnrs/archive-search'   	=> 'Block_WSUWP_Search_Archive',
 	);
 
 	public static function cahnrs_allowed_blocks(){
@@ -50,6 +51,7 @@ class Register_Block_Video_List extends Blocks {
 			$block_class = __NAMESPACE__ . '\\' . $class;
 
 			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'blocks/cahnrs-video-list/block.php';
+			require_once plugin_dir_path( dirname( __FILE__ ) ) . 'blocks/cahnrs-archive-search/block.php';
 
 			// Call get('register_block') to check if the block should be registered, default is true in class-block.php
 			if ( call_user_func( array( $block_class, 'get' ), 'register_block' ) ) {
