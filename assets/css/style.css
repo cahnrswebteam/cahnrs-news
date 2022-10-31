@@ -255,9 +255,10 @@ Video List Styling
     padding-top: 25px;
     height: 0;
     background: white;
-    background-image: url('https://media.tenor.com/tEBoZu1ISJ8AAAAC/spinning-loading.gif');
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xml:space='preserve' viewBox='0 0 52 100'%3E%3Ccircle cx='6' cy='50' r='6' fill='%23CA1237'%3E%3Canimate attributeName='opacity' begin='.1' dur='1s' repeatCount='indefinite' values='0;1;0'/%3E%3C/circle%3E%3Ccircle cx='26' cy='50' r='6' fill='%23CA1237'%3E%3Canimate attributeName='opacity' begin='.2' dur='1s' repeatCount='indefinite' values='0;1;0'/%3E%3C/circle%3E%3Ccircle cx='46' cy='50' r='6' fill='%23CA1237'%3E%3Canimate attributeName='opacity' begin='.3' dur='1s' repeatCount='indefinite' values='0;1;0'/%3E%3C/circle%3E%3C/svg%3E");
     background-position: center;
     background-repeat: no-repeat;
+    background-size: 100px;
 }
 
 .wrapper-iframe iframe {
@@ -307,7 +308,7 @@ body:not(.single-video) .video-transcript .wsu-accordion.wsu-accordion--open .ws
     
     .individual-video {
         flex: 1;
-        margin: 0.5rem;
+        margin-right: 0.5rem;
         max-width: 45%;
     }
 
