@@ -57,22 +57,24 @@
 								<iframe src="<?php echo $youtube_URL_with_id; ?>" name="<?php echo $video_item['title']; ?>" frameborder="0" width="900" height="700"></iframe>
 							</div>
 
-							<div class="video-transcript">
-								<div class="wsu-accordion">
-									<h3 id="unique-id-1__title" class="wsu-accordion__title">
-										<button id="transcript" class="wsu-accordion__title-button wsu-accordion--toggle" aria-expanded="false" aria-controls="unique-id-1__content">Transcript</button>
-									</h3>
-									<div id="unique-id-1__content" class="wsu-accordion__content" aria-labelledby="unique-id-1__title" style="">
-										<div class="wsu-accordion__content-inner" tabindex="0">
-											<?php 
-											
-											echo $video_transcript[0]; 
-										?>
+							<?php if(!empty($video_transcript)){ ?>
+								<div class="video-transcript">
+									<div class="wsu-accordion">
+										<h3 id="unique-id-1__title" class="wsu-accordion__title">
+											<button id="transcript" class="wsu-accordion__title-button wsu-accordion--toggle" aria-expanded="false" aria-controls="unique-id-1__content">Transcript</button>
+										</h3>
+										<div id="unique-id-1__content" class="wsu-accordion__content" aria-labelledby="unique-id-1__title" style="">
+											<div class="wsu-accordion__content-inner" tabindex="0">
+												<?php 
+												
+												echo $video_transcript[0]; 
+											?>
+											</div>
 										</div>
 									</div>
 								</div>
-								
-							</div>
+							<?php } ?>
+							
 						</div>
 					</div>
 				</div>

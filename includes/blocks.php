@@ -1,7 +1,7 @@
 <?php 
 namespace WSUWP\Plugin\Gutenberg;
 
-require_once( ABSPATH . 'wp-content\plugins\wsuwp-plugin-gutenberg\includes\plugin.php');
+require_once( $plugin_url . 'wp-content\plugins\wsuwp-plugin-gutenberg\includes\plugin.php');
 
 class Register_Block_Video_List extends Blocks {
     protected static $register_blocks = array(
