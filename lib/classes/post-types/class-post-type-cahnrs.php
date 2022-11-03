@@ -2,14 +2,6 @@
 
 class Post_Type_CAHNRS_News {
 
-
-	public function check_enabled( $post_type ) {
-
-		return ( get_theme_mod( "_cahnrswp_enable_{$post_type}", false ) ) ? true : false;
-
-	} // End check_enabled
-
-
 	public function check_redirect( $template ) {
 
 		if ( is_singular() ) {
@@ -68,12 +60,6 @@ class Post_Type_CAHNRS_News {
 
 			} // end if
 		} // end if
-
-		//if ( ! isset( $_POST['cahnrs_pagebuilder_key'] ) || ! wp_verify_nonce( $_POST['cahnrs_pagebuilder_key'], 'save_cahnrs_pagebuilder_' . $post_id ) ) {
-
-			// return false;
-
-		//}
 
 		return true;
 

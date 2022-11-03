@@ -27,8 +27,50 @@ class Articles_Post_Type_CAHNRS {
 		'awards' => 'Press and Awards',
 	);
 
+	public function do_register_rest_field() {
+
+		register_rest_field(
+			'article',
+			'post_images',
+			array(
+				'get_callback' => array( $this, 'add_rest_image' ),
+			)
+		);
+
+	} // End register_rest_field
+
+	public function add_rest_image( $object, $field_name, $request ) {
+
+		$images = array();
+
+		$post_id = $object[ 'id' ];
+
+		if ( has_post_thumbnail( $post_id ) ) {
+
+			$image_sizes = array( 'full', 'large', 'medium', 'thumbnail' );
+
+			$img_id = get_post_thumbnail_id( $post_id );
+
+			foreach ( $image_sizes as $size ) {
+
+				$img_url_array = wp_get_attachment_image_src( $img_id, $size, true );
+
+				$images[ $size ] = $img_url_array[0];
+
+			} // End foreach
+		} // End if
+
+		return $images;
+
+	} // End add_rest_image
+
+
 
 	public function __construct() {
+
+		add_action( 'rest_api_init', array( $this, 'do_register_rest_field' ) );
+
+		add_action( 'add_meta_boxes', array( $this, 'cahnrs_news_article_placement' ) );
 
 		add_action( 'init', array( $this, 'register_post_type' ) );
 
@@ -40,11 +82,11 @@ class Articles_Post_Type_CAHNRS {
 
 		add_action( 'rest_article_query', array( $this, 'custom_rest_query_args' ), 10, 2 );
 
-		add_filter( 'cahnrs_default_query_args', array( $this, 'cahnrs_default_query_args' ), 10, 3 );
+		add_filter( 'cahnrs_news_default_query_args', array( $this, 'cahnrs_news_default_query_args' ), 10, 3 );
 
-		add_filter( 'cahnrs_query_args_local', array( $this, 'cahnrs_query_args_local' ), 10, 3 );
+		add_filter( 'cahnrs_news_query_args_local', array( $this, 'cahnrs_news_query_args_local' ), 10, 3 );
 
-		add_filter( 'cahnrs_query_args_remote', array( $this, 'cahnrs_query_args_remote' ), 10, 3 );
+		add_filter( 'cahnrs_news_query_args_remote', array( $this, 'cahnrs_news_query_args_remote' ), 10, 3 );
 
 		add_filter( 'template_include', array( $this, 'check_redirect' ), 1 );
 
@@ -91,8 +133,9 @@ class Articles_Post_Type_CAHNRS {
 			} // End if
 
 			if ( ! empty( $redirect_url ) ) {
+				
+				$template = require_once(plugin_dir_path(__DIR__).'lib/theme-templates/redirect.php');
 
-				$template = locate_template( 'lib/theme-templates/redirect.php', false );
 
 			} // End if
 		} // End if
@@ -102,7 +145,7 @@ class Articles_Post_Type_CAHNRS {
 	} // End check_redirect
 
 
-	public function cahnrs_query_args_local( $wp_args, $args, $context ) {
+	public function cahnrs_news_query_args_local( $wp_args, $args, $context ) {
 
 		if ( 'article' === $args['post_type'] ) {
 
@@ -144,10 +187,10 @@ class Articles_Post_Type_CAHNRS {
 
 		return $wp_args;
 
-	} // End cahnrs_query_args_local
+	} // End cahnrs_news_query_args_local
 
 
-	public function cahnrs_query_args_remote( $query, $args, $context ) {
+	public function cahnrs_news_query_args_remote( $query, $args, $context ) {
 
 		if ( 'article' === $args['post_type'] ) {
 
@@ -174,7 +217,7 @@ class Articles_Post_Type_CAHNRS {
 
 		return $query;
 
-	} // End cahnrs_query_args_remote
+	} // End cahnrs_news_query_args_remote
 
 
 	public function get_article_topic_query( $args, $context ) {
@@ -290,7 +333,7 @@ class Articles_Post_Type_CAHNRS {
 	} // End get_article_topic_query
 
 
-	public function cahnrs_default_query_args( $args_default, $args, $context ) {
+	public function cahnrs_news_default_query_args( $args_default, $args, $context ) {
 
 		if ( 'article' === $args['post_type'] ) {
 
@@ -312,7 +355,7 @@ class Articles_Post_Type_CAHNRS {
 
 		return $args_default;
 
-	} // End cahnrs_default_query_args
+	} // End cahnrs_news_default_query_args
 
 
 	public function custom_rest_query_args( $args, $request ) {
@@ -441,6 +484,75 @@ class Articles_Post_Type_CAHNRS {
 
 	} // End add_feature_settings
 
+    public function cahnrs_news_article_placement() {
+        $cahnrs_post_types = [ 'article' ];
+        foreach ( $cahnrs_post_types as $cahnrs_post_type ) {
+            add_meta_box(
+                'cahnrs_news_article_placement',                
+                'News Article Placement',     
+                array( $this, 'cahnrs_news_article_meta_boxes'),  
+                $cahnrs_post_type                      
+            );
+        }
+    }
+    
+
+    public function cahnrs_news_article_meta_boxes( $post) {
+
+			$post_id = $post->ID;
+
+			$distribute = get_post_meta( $post_id, '_article_distribute', true );
+
+			if ( is_array( $distribute ) ) {
+	
+				$distribute = $distribute[0];
+	
+			}
+	
+			$placement = get_post_meta( $post_id, '_article_placement', true );
+	
+			if ( ! is_array( $placement ) ) {
+	
+				$placement = array( 'news-feed' );
+	
+			}
+	
+			$general_topics = $this->general_topics;
+	
+			$subjects = $this->subjects;
+	
+			$sources = $this->get_sources( $post_id );
+	
+			$topic_values = get_post_meta( $post_id, '_article_topic', true );
+	
+			if ( ! is_array( $topic_values ) ) {
+	
+				$topic_values = array();
+	
+			}
+	
+			$subjects_values = get_post_meta( $post_id, '_article_subject', true );
+	
+			if ( ! is_array( $subjects_values ) ) {
+	
+				$subjects_values = array();
+	
+			}
+	
+			$short_title = get_post_meta( $post_id, '_article_short_title', true );
+	
+			$slide_image_url = get_post_meta( $post_id, '_article_slide_image_url', true );
+	
+			$redirect_url = get_post_meta( $post_id, '_article_redirect_url', true );
+
+
+		include 'includes/editor.php';
+
+        ?>
+    
+        <?php
+    }
+
 
 	protected function get_edit_form( $post_id ) {
 
@@ -497,7 +609,8 @@ class Articles_Post_Type_CAHNRS {
 		}
 
 		ob_start();
-			require_once(plugin_dir_path(__DIR__).'articles/includes/editor.php');
+
+		require_once(plugin_dir_path(__DIR__).'articles/includes/editor.php');
 
 		$html .= ob_get_clean();
 
@@ -553,7 +666,7 @@ class Articles_Post_Type_CAHNRS {
 
 		ob_start();
 
-		require_once(plugin_dir_path(__DIR__).'/articles/includes/summary-form.php');
+		require_once(plugin_dir_path(__DIR__).'lib/post-types/articles/includes/summary-form.php');
 
 		$html .= ob_get_clean();
 
